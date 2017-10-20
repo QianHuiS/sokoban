@@ -1,15 +1,68 @@
+<!--
+
+HTML不會顯示錯誤訊息, 因為不想對終端的用戶顯示錯誤(沒意義).
+故, 當程式複雜化, programmer只能知道有錯, 不會提示debug哪錯.
+故, 通常會把CSS獨立出一個檔, 避免除錯困難.
+*本檔檔內容為HTML包含CSS.
+
+HTML_tag包含CSS描述的寫法:
+  <HTML標籤 = "CSS設定項目: CSS內容; 項目: 內容;">
+
+CSS顏色, 通常用 #16進制碼 表示.
+  RGB: 24bits, 每個顏色8bits, RGB255色.
+  ARGB/RGBA: 32bits, RGB255色+Alpha channel(透明色)
+
+各種單位
+  px: pixel, 像素, 簡單但不建議使用.
+  width: 以比例為基礎, 適用於大區塊, 但小區塊不佳.
+  em: 寬度單位, 考慮版面隨字型大小變化.
+  rem: 考慮版面有兩種以上字型時, r=root, 根據root宣告的字體大小改變.
+  ex: 高度單位.
+
+-->
+
 <!DOCTYPE html>
-<html lan="zh-TW">
+<html lang="zh-TW">
+
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, inittal-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Sokoban: A Puzzle Game</title>
     <meta name="author" content="Yiwei Chiao">
-    <meta name="description" content="A web-based Sokoban (倉庫番) game.">
+    <meta name="description" content="A web-based Sokoban(倉庫番) game.">
     <meta name="keywords" content="Javascript, game, Sokoban">
   </head>
-  <body>
-    <h1>Hello World!</h1>
+
+  <body style="background-color: #ffffe7;">
+    <header style="background-color: #c7c7f7;">
+      <h1>Sokoban:</h1>
+      <h3>⼀個 html5/css3/node.js 的練習專案</h3>
+    </header>
+    <nav style="background-color: #c7f7f7;">
+      <h2>NAV</h2>
+      <h3>功能表單 navigation</h3>
+    </nav>
+    <aside style="background-color: #f7c7c7; width: 15%; height: 500px; float: left;">
+      <h2>ASIDE</h2><h3>側欄</h3>
+    </aside>
+    <article style="background-color: #c7c7c7; width: 85%; height: 500px; float: left;">
+
+      <h2>ARTICLE</h2>
+      主題⽂件
+      <section style="background-color: #c7f7c7; height: 150px;">
+        <h2>SECTION</h2>
+        第⼀⼩節
+      </section>
+      <section style="background-color: #c7f7c7; height: 150px;">
+        <h2>SECTION</h2>
+        第⼆⼩節
+      </section>
+    </article>
+    <footer style="background-color: #e7e7e7;">
+      <h2>FOOTER</h2>
+      <small>&copy; Copyright 2017，佛光⼤學創意與科技學院<small>
+    </footer>
   </body>
+
 </html>
