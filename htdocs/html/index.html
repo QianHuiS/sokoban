@@ -1,0 +1,87 @@
+<!--
+CSS選擇器類型:(套用範圍由大到小)
+  1.以HTML的tag為範圍, 符合者套用選擇器.
+  2.以CSS中設定的class為範圍, 套用指定class類型的選擇器.
+  3.以特定id為範圍, 套用指定id類型的選擇器.
+-->
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sokoban: A Puzzle Game</title>
+    <meta name="author" content="Yiwei Chiao">
+    <meta name="description" content="A web-based Sokoban (倉庫番) game.">
+    <meta name="keywords" content="Javascript, game, Sokoban">
+
+    <link rel="stylesheet" href="../assets/css/styles.css">   <!--連結外部檔案(CSS). 套用HTML_TAG的CSS選擇器.-->
+  </head>
+  <body>
+    <header id="page_top">
+      <h1 class="irontext">Sokoban:</h1>
+      <h3>一個 html5/css3/node.js 的練習專案</h3>
+    </header>
+    <nav>
+      <h2>NAV</h2>
+      <h3>功能表單 navigation</h3>
+      <ul>
+        <li id="sec1">第一頁
+          <ul class="drop_box" id="drop_1">
+            <li><a href="#sec1">Section 1</a></li>
+          </ul>
+        </li>
+        <li>第二頁
+          <ul class="drop_box" id="drop_2">
+            <li><a href="#sec2">Section 2</a></li>
+          </ul>
+        </li>
+        <li>第三頁
+          <ul class="drop_box" id="drop_3">
+            <li><a href="#sec3">Section 3</a></li>
+          </ul>
+        </li>
+        <li>第四頁</li>
+        <li>第五頁</li>
+        <li id="about">關  於
+          <ul class="drop_box" id="drop_about">
+            <li>小組成員</li>
+            <li>工作分工</li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="flexbox">
+      <aside>
+        <h2 class="irontext">ASIDE</h2>
+        <h3>側欄</h3>
+      </aside>
+      <article>
+        <h2 class="bluetext">ARTICLE</h2>
+        主題文件
+        <section class="browntext" id="sec1">
+          <h2 class="redtext">SECTION</h2>
+          第一小節
+          <img src="assets/png/SokobanClone_byVellidragon.png"
+          alt="sokoban icons" width="480" height="480">    <!--圖片無法顯示時,替代資源.-->
+          <button type="button">
+            <a href="#page_top">回上方</a>
+          </button>
+        </section>
+        <section class="browntext milky" id="sec2">
+          <h2 class="redtext">SECTION</h2>
+          第二小節
+        </section>
+        <section class="browntext milky" id="sec3">
+          <h2 class="redtext">SECTION</h2>
+          第三小節
+        </section>
+      </article>
+    </div>
+    <footer class="lighttext">
+      <h2 class="blacktext">FOOTER</h2>
+      <small>&copy; Copyright 2017，佛光大學創意與科技學院<small>
+    </footer>
+  </body>
+</html>
