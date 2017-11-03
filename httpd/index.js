@@ -70,7 +70,49 @@ http.createServer(  (request, response)=>
           response.end();  //告訴客戶端內容已經傳完.
         });
         break;
-      
+
+      case '/assets/css/styles.css':
+        fs.readFile('../htdocs/assets/css/styles.css', (err, data)=>
+        {
+          if(err)
+            console.log(' 檔案讀取錯誤');
+
+          else
+          {
+            // 傳送HTTP header
+            // HTTP Status: 200 : OK
+            // Content Type: text/plain
+            response.writeHead(200,
+            { 'Content-Type': 'text/css'  });
+          }   //'image/png'.
+
+          response.write(data);  //將資料回應給客戶端.
+          response.end();  //告訴客戶端內容已經傳完.
+        });
+        break;
+
+      case '/assets/png/SokobanClone_byVellidragon.png':
+        fs.readFile('../htdocs/assets/png/SokobanClone_byVellidragon.png', (err, data)=>
+        {
+          if(err)
+            console.log(' 檔案讀取錯誤');
+
+          else
+          {
+            // 傳送HTTP header
+            // HTTP Status: 200 : OK
+            // Content Type: text/plain
+            response.writeHead(200,
+            { 'Content-Type': 'image/png'  });
+          }
+
+          response.write(data);  //將資料回應給客戶端.
+          response.end();  //告訴客戶端內容已經傳完.
+        });
+        break;
+
+//      case '/favicon.ico': 圖標沒有設定, 再看要不要做.
+
       default:
         console.log(' 未定義存取: ' +request.url);
         response.end();
