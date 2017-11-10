@@ -43,10 +43,48 @@ ps.
      ex. ()=>{定義}
 */
 
+/*
+  所有函數都是物件, 所有物件不一定都是函數.
+  javascript的物件宣告(函數物件)
+  const objectName=
+  {
+    object1
+    {
+      key1: value,
+      key2: value,
+      ...
+    },
+    object2
+    { ... },
+    ...
+  }
+
+    key==property: 屬性.
+*/
+
 
 'use strict'
 
 let http=require('http');
+
+const routingTable=   //建立路由表(routing table), 用來查詢對應的request.url.
+{
+  '/':
+  {
+    url: '../htdocs/index.html',
+    type: 'text/html'
+  },
+  '/styles.css':    //簡化/assets/css/styles.css
+  {
+    url: '../htdocs/assets/css/styles.css',
+    type: 'text/css'
+  },
+  '/SokobanClone_byVellidragon.png':   //簡化/assets/png/SokobanClone_byVellidragon.png'
+  {
+    url: '../htdocs/assets/png/SokobanClone_byVellidragon.png',
+    type: 'text/css'
+  },
+};
 
 /*
   利⽤ http.ServerResponse 物件回傳檔案內容
@@ -94,26 +132,15 @@ http.createServer(  (request, response)=>
 
   request.on('end', ()=>
   {
-    switch(request.url)
+    if (request.url in routingTable)    //搜尋路由表, 如果有找到對應的存取.
     {
-      case '/':
-        serve(response, '../htdocs/index.html', 'text/html');
-        break;
-
-      case '/assets/css/styles.css':
-        serve(response, '../htdocs/assets/css/styles.css', 'text/css');
-        break;
-
-      case '/assets/png/SokobanClone_byVellidragon.png':
-        serve(response, '../htdocs/assets/png/SokobanClone_byVellidragon.png', 'image/png');
-        break;
-
-//      case '/favicon.ico': 圖標沒有設定, 再看要不要做.
-
-      default:
-        console.log(' 未定義存取: ' +request.url);
-        response.end();
-        break;
+      let obj = routingTable[request.url];  //設obj為表中對應的物件路徑.
+      serve(response, obj.url, obj.type); //呼叫serve函數填入表中的內容進行設定.
+    }
+    else
+    {
+      console.log(' 未定義的存取: ' + request.url);
+      response.end();
     }
   });
 }).listen(8088);
