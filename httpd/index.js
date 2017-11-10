@@ -27,10 +27,56 @@ ps.
   處理方式為: 讀取HTML檔(檔案中又連結去讀取CSS檔)
 
 */
+/*瀏覽器錯誤!!!
+  若是在開發網頁的測試時, 有可能因為網頁相同,
+  所以瀏覽器快取覺得檔案沒有改變, 故沒有讀取重存的檔案.
+
+  此時, chrome可以開啟開發者模式(一定會重新讀取); 或是對快取作設定,將它關閉.
+*/
+/*
+  request.on( '事件名', 函數(引數); );:
+  當事件發生時的處理方式.
+    on, 當事件發生時.
+    函數為, 事件發生時執行的動作.
+    *網頁的函數通常為匿名函數, 故只有" ()"沒有名字,
+     匿名函數為臨時定義, 故後面為定義.
+     ex. ()=>{定義}
+*/
+
 
 'use strict'
 
 let http=require('http');
+
+/*
+  利⽤ http.ServerResponse 物件回傳檔案內容
+
+  @name serve                                //物件名稱: serve
+  @function                                  //物件類型: 函數
+  @param response - http.ServerResponse 物件  //參數1: 瀏覽器回傳物件
+  @param fname - 要回傳的檔案名                 //參數2: 回傳的檔名
+  @param datatype - 回傳檔案內容的 Mine-Type    //參數3: 回傳內容的資料型別
+  @returns {undefined}                        //函數回傳值為空.
+*/
+let serve=(response, fname, datatype)=>   //把switch重複的code改成函數.
+{
+  let fs=require('fs');
+
+  fs.readFile(fname, (err, data)=>  //參數1用相對路徑讀取檔案; 參數2可能為err或data.
+  {
+    if(err) console.log('檔案讀取錯誤');  //若錯誤, 顯示在命令提示字元的日誌.
+    else
+    {
+      // 傳送HTTP header
+      // HTTP Status: 200 : OK
+      // Content Type: 目前有'text/html', 'text/css', 'image/png' 3種.
+      response.writeHead(200, { 'Content-Type': datatype  });
+
+      response.write(data);  //將資料回應給客戶端.
+      response.end();  //告訴客戶端內容已經傳完.
+    }
+  });
+};
 
 http.createServer(  (request, response)=>
 {
@@ -51,64 +97,15 @@ http.createServer(  (request, response)=>
     switch(request.url)
     {
       case '/':
-        fs.readFile('../htdocs/index.html', (err, data)=>   //相對路徑讀取檔案
-        {
-          if(err)
-            console.log(' 檔案讀取錯誤');
-
-          else
-          {
-            // 傳送HTTP header
-            // HTTP Status: 200 : OK
-            // Content Type: text/plain
-            response.writeHead(200,
-            { 'Content-Type': 'text/html'  });  //原為plain(一般文字), 現改為html.
-          }   //檔案本身雖然是HTML, 但是檔中連結還包含了CSS和PNG檔 !!!
-          //'text/css', 'image/png'.
-
-          response.write(data);  //將資料回應給客戶端.
-          response.end();  //告訴客戶端內容已經傳完.
-        });
+        serve(response, '../htdocs/index.html', 'text/html');
         break;
 
       case '/assets/css/styles.css':
-        fs.readFile('../htdocs/assets/css/styles.css', (err, data)=>
-        {
-          if(err)
-            console.log(' 檔案讀取錯誤');
-
-          else
-          {
-            // 傳送HTTP header
-            // HTTP Status: 200 : OK
-            // Content Type: text/plain
-            response.writeHead(200,
-            { 'Content-Type': 'text/css'  });
-          }   //'image/png'.
-
-          response.write(data);  //將資料回應給客戶端.
-          response.end();  //告訴客戶端內容已經傳完.
-        });
+        serve(response, '../htdocs/assets/css/styles.css', 'text/css');
         break;
 
       case '/assets/png/SokobanClone_byVellidragon.png':
-        fs.readFile('../htdocs/assets/png/SokobanClone_byVellidragon.png', (err, data)=>
-        {
-          if(err)
-            console.log(' 檔案讀取錯誤');
-
-          else
-          {
-            // 傳送HTTP header
-            // HTTP Status: 200 : OK
-            // Content Type: text/plain
-            response.writeHead(200,
-            { 'Content-Type': 'image/png'  });
-          }
-
-          response.write(data);  //將資料回應給客戶端.
-          response.end();  //告訴客戶端內容已經傳完.
-        });
+        serve(response, '../htdocs/assets/png/SokobanClone_byVellidragon.png', 'image/png');
         break;
 
 //      case '/favicon.ico': 圖標沒有設定, 再看要不要做.
