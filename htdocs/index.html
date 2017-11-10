@@ -3,6 +3,9 @@ CSS選擇器類型:(套用範圍由大到小)
   1.以HTML的tag為範圍, 符合者套用選擇器.
   2.以CSS中設定的class為範圍, 套用指定class類型的選擇器.
   3.以特定id為範圍, 套用指定id類型的選擇器.
+
+CSS檔及png圖連結簡化:
+  因為js檔讀取要求時,有路由表可以查詢url, 所以不需要寫出相對路徑, 只要檔名即可.
 -->
 
 <!DOCTYPE html>
@@ -16,7 +19,7 @@ CSS選擇器類型:(套用範圍由大到小)
     <meta name="description" content="A web-based Sokoban (倉庫番) game.">
     <meta name="keywords" content="Javascript, game, Sokoban">
 
-    <link rel="stylesheet" href="./assets/css/styles.css">   <!--連結外部檔案(CSS). 套用HTML_TAG的CSS選擇器.-->
+    <link rel="stylesheet" href="/styles.css">   <!--連結外部檔案(CSS). 套用HTML_TAG的CSS選擇器.-->
   </head>
   <body>
     <header id="page_top">
@@ -63,7 +66,7 @@ CSS選擇器類型:(套用範圍由大到小)
         <section class="browntext" id="sec1">
           <h2 class="redtext">SECTION</h2>
           第一小節
-          <img src="assets/png/SokobanClone_byVellidragon.png"
+          <img src="/SokobanClone_byVellidragon.png"
           alt="sokoban icons" width="480" height="480">    <!--圖片無法顯示時,替代資源.-->
           <button type="button">
             <a href="#page_top">回上方</a>

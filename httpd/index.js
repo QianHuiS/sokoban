@@ -82,7 +82,7 @@ const routingTable=   //建立路由表(routing table), 用來查詢對應的req
   '/SokobanClone_byVellidragon.png':   //簡化/assets/png/SokobanClone_byVellidragon.png'
   {
     url: '../htdocs/assets/png/SokobanClone_byVellidragon.png',
-    type: 'text/css'
+    type: 'image/png'
   },
 };
 
