@@ -67,6 +67,8 @@ ps.
 
 let http=require('http');
 
+const routingTable=require('./config.json');
+/*已改為JSON配置檔的部分, 原程式碼.
 const routingTable=   //建立路由表(routing table), 用來查詢對應的request.url.
 {
   '/':
@@ -85,6 +87,7 @@ const routingTable=   //建立路由表(routing table), 用來查詢對應的req
     type: 'image/png'
   },
 };
+*/
 
 /*
   利⽤ http.ServerResponse 物件回傳檔案內容
