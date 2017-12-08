@@ -1,148 +1,183 @@
-html
-{ height: 100%; }
+/**
+ *  @file       styles.css
+ *  @brief      The default .css file of Sokoban.
+ *  @author     Yiwei Chiao (ywchiao@gmail.com)
+ *  @date       11/17/2017 created.
+ *  @date       12/07/2017 last modified.
+ *  @since      0.1.0
+ *  @copyright  MIT, (C) 2017 Yiwei Chiao
+ *  @details
+ *
+ *  The default .css file of Sokoban.
+ */
 
-body
-{
-  background-color: #ffffe7;
+html {
   height: 100%;
 }
 
-header
-{ background-color: #c7c7f7;  }
-
-nav
-{ background-color: #c7f7f7;  }
-
-/*
- * 選擇 nav 下面的 ul 元素下的 *所有* li 元素
- */
-nav > ul > li {
-    display: inline-block;
-    height: 2em;
-    min-width: 4em;
-    line-height: 2em;
-    text-align: center;
-    // 上下 pading: 0; 左右 padding: 0.5 em;
-    padding: 0px .5em;
-    // 上下 pading: 0; 左右 padding: 0.25 em;
-    margin: 0px .25em;
-    border: none;
-    background-color: bisque;
+body {
+  background-color: #ffffe7;
+  height: 100vh;
 }
 
-
-/*  :hover: 當滑鼠游標移到...時.  */
-nav > ul > li:hover   /*  當滑鼠游標移到nav>ul>li上時, 更改背景顏色. */
-{
-    background-color: #dfdfdf;
+header {
+  background-color: #c7c7f7;
 }
 
-nav > ul > li:hover [id*=drop_] {
-    display: block;
+nav {
+  background-color: #c7f7f7;
 }
 
-
-aside
-{
+aside {
   background-color: #f7c7c7;
-  width: 15%;
-  float: left;
 }
 
-article
-{
+article {
   background-color: #c7c7c7;
-  width: 85%;
+}
+
+oection {
+  background-color: #c7f7c7;
+}
+
+footer {
+  background-color: #e7e7e7;
+}
+
+.card {
+  border-radius: 12px;
+  border: 1px solid azure;
+  padding: .25rem .5rem;
+  margin: 1rem 3rem;
+  box-shadow: 3px 5px;
+  background-color: #ffefcf;
+  opacity: .75;
+  text-align: center;
+}
+
+.card_header {
+  position: relative;
+  line-height: 2rem;
+  height: 2rem;
+  margin: 1.0rem 0 .25rem 0;
+  text-align: left;
+}
+
+.card_content {
+  display: grid;
+  grid: repeat(5, 1fr) / repeat(5, 1fr);
+  margin: .25rem;
+  padding: 1rem 0;
+  border-top: 3px solid #aaaacc;
+  border-bottom: 3px solid #aaaacc;
+}
+
+@keyframes slide_in {
+  from {
+    margin-left: 100%;
+    width: 100%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes move_eye {
+  from {
+    margin-left: -20%;
+  }
+
+  to {
+    margin-left: 100%;
+  }
+}
+
+.welcome {
+  background-color: black;
+  height: 3.5rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.welcome_message {
+  width: 100%;
+  text-align: center;
+  margin-right: 2%;
+  padding: .25rem;
+  color: white;
   float: left;
 }
 
-section
-{ background-color: #c7f7c7;  }
+.cylon_eye {
+  background-color: red;
+  background-image: linear-gradient(to right,
+      rgba(0, 0, 0, .9) 25%,
+      rgba(0, 0, 0, .1) 50%,
+      rgba(0, 0, 0, .9) 75%
+  );
 
-footer
-{ background-color: #e7e7e7;  }
+  color: white;
+  height: 100%;
+  width: 20%;
 
-.flexbox
-{ display: flex;  }
+  animation: 5s linear alternate infinite move_eye;
+}
 
-.blacktext
-{ color: #0f0f0f; }
-
-.redtext
-{ color: #ff3333; }
-
-.bluetext
-{ color: #3333ff; }
-
-.irontext
-{ color: #efefaf; }
-
-.browntext
-{ color: #9f5f5f; }
-
-.sectext
-{  color: #7f7fef;  }
-
-.lighttext
-{ color: #9f9f7f; }
-
-
-/*
- * 下拉式 (drop-down) 功能表
- */
-.drop_box
-{
-    // 預設不顯示;
-    display: none;
-    // 去除 ul.li 的項目標示;
-    list-style-type: none;
-    // 位置跟隨它的父元素;
-    position: absolute;
-    background-color: #f9f9f9;
-    padding: 0px;
-    margin: 0px .25em;
+.slide_in {
+  animation: 3s ease alternate 1 slide_in;
+  overflow: hidden;
 }
 
 /*
- * 下拉式功能表裡的 *li* (list item)
- * 選單項目屬性設定
+ * 頁面的根 container
  */
-.drop_box ul li
-{
-    min-width: 4em;
-    text-align: center;
-    padding: 0px .5em;
-    margin: .25em 0px;
-    border: none;
-    background-color: bisque;
+.site_container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 /*
- * 當滑鼠游標移至
- * 下拉式功能表裡的 *li* (list item)
- * 選單項目時，
- * 更改屬性設定
+ * 佔據所有能佔的 (垂直) 空間的 site_body
  */
-.drop_box li:hover
-{
-    color: DodgerBlue;
-    background-color: Salmon;
+.site_body {
+  flex: 1 0 auto;
+/*  padding: 0 1rem; */
 }
 
+.site_banner {
+  padding: 1rem;
+}
 
-#about
-{
-  float: right;
-  margin: 0px 2em 0px 0px;
+.site_status {
+  background-color: #696969;
+  color: #f0fff0;
+  padding: 0 1rem;
 }
 
 /*
- * 當滑鼠游標移至 *關於* (about) 時，將
- * 對應的 drop_box 顯示出來
+ * 設置固定在底部的 site footer。
  */
-#about:hover #drop_about
-{ display: block; }
+.site_footer {
+  display: flex;
+  flex-shrink: 0;
+  padding: 1rem;
+  color: SteelBlue;
+  background: MidnightBlue;
+}
 
+.float_right {
+  margin-left: auto;
+}
 
-.milky
-{ background-color: #ffffea;  }
+#cursor_x {
+  color: #00ffff;
+}
+
+#cursor_y {
+  color: #ffff00;
+}
+
+/* styles.css */

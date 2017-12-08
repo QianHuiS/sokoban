@@ -1,12 +1,3 @@
-<!--
-CSS選擇器類型:(套用範圍由大到小)
-  1.以HTML的tag為範圍, 符合者套用選擇器.
-  2.以CSS中設定的class為範圍, 套用指定class類型的選擇器.
-  3.以特定id為範圍, 套用指定id類型的選擇器.
-
-CSS檔及png圖連結簡化:
-  因為js檔讀取要求時,有路由表可以查詢url, 所以不需要寫出相對路徑, 只要檔名即可.
--->
 
 <!DOCTYPE html>
 <html lang="zh-TW">
@@ -19,72 +10,28 @@ CSS檔及png圖連結簡化:
     <meta name="description" content="A web-based Sokoban (倉庫番) game.">
     <meta name="keywords" content="Javascript, game, Sokoban">
 
-    <link rel="stylesheet" href="/styles.css">   <!--連結外部檔案(CSS). 套用HTML_TAG的CSS選擇器.-->
+    <link rel="stylesheet" href="styles.css">
+    <script src="sokoban.js"></script>
   </head>
   <body>
-    <header id="page_top">
-      <h1 class="irontext">Sokoban:</h1>
-      <h3>一個 html5/css3/node.js 的練習專案</h3>
-    </header>
-    <nav>
-      <h2>NAV</h2>
-      <h3>功能表單 navigation</h3>
-      <ul>
-        <li id="sec1">第一頁
-          <ul class="drop_box" id="drop_1">
-            <li><a href="#sec1">Section 1</a></li>
-          </ul>
-        </li>
-        <li>第二頁
-          <ul class="drop_box" id="drop_2">
-            <li><a href="#sec2">Section 2</a></li>
-          </ul>
-        </li>
-        <li>第三頁
-          <ul class="drop_box" id="drop_3">
-            <li><a href="#sec3">Section 3</a></li>
-          </ul>
-        </li>
-        <li>第四頁</li>
-        <li>第五頁</li>
-        <li id="about">關  於
-          <ul class="drop_box" id="drop_about">
-            <li>小組成員</li>
-            <li>工作分工</li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <div class="flexbox">
-      <aside>
-        <h2 class="irontext">ASIDE</h2>
-        <h3>側欄</h3>
-      </aside>
-      <article>
-        <h2 class="bluetext">ARTICLE</h2>
-        主題文件
-        <section class="browntext" id="sec1">
-          <h2 class="redtext">SECTION</h2>
-          第一小節
-          <img src="/SokobanClone_byVellidragon.png"
-          alt="sokoban icons" width="480" height="480">    <!--圖片無法顯示時,替代資源.-->
-          <button type="button">
-            <a href="#page_top">回上方</a>
-          </button>
-        </section>
-        <section class="browntext milky" id="sec2">
-          <h2 class="redtext">SECTION</h2>
-          第二小節
-        </section>
-        <section class="browntext milky" id="sec3">
-          <h2 class="redtext">SECTION</h2>
-          第三小節
-        </section>
+    <div class="site_container">
+      <header class="site_banner">
+        <h1 class="irontext">Sokoban:</h1>
+        <h3>一個 html5/css3/node.js 的練習專案</h3>
+      </header>
+      <article class="site_body">
+        <header class="site_status">
+          <span>
+            x:<span id="cursor_x">0</span>
+            y:<span id="cursor_y">0</span>
+          </span>
+        </header>
       </article>
+      <footer class="site_footer">
+        <small class="float_right">
+          &copy; Copyright 2017，佛光大學資訊應用學系
+        <small>
+      </footer>
     </div>
-    <footer class="lighttext">
-      <h2 class="blacktext">FOOTER</h2>
-      <small>&copy; Copyright 2017，佛光大學創意與科技學院<small>
-    </footer>
   </body>
 </html>
