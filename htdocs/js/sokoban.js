@@ -9,6 +9,8 @@ new:
   準備繪圖用的 sprites 資料
   依滑鼠事件 (click)，改變遊戲資料
 
+對一陣列中的每個元素去呼叫forEach((參數1,2...)=>{執行程式碼});
+stringObject.charAt(index).
 */
 
 /**
@@ -564,7 +566,7 @@ let sokoban = {
    */
   tiling: {
     BOX: 'box',
-    BOX_ON_GOAL: 'boxOnGoal',
+    BOX_ON_GOAL: 'boxOnGoal',   //後者為一結構, 貼圖剪裁範圍所需的座標.
     FLOOR: 'floor',
     GOAL: 'goal',
     GROUND: 'ground',
@@ -581,10 +583,22 @@ let sokoban = {
   update: function (e) {
     this.move(e);
     this.paint();
+
     //檢查遊戲是否結束...
-  /*  if (檢查) {
-      alerr('You Win');
-    }*/
+    var boxongoal=0;
+    var nogoal=1;
+
+    for(var y=0; y<this.level.length; y++){   //檢查每個字元
+      for(var x=0; x<this.level.length; x++){
+        if(this.level[y].charAt(x)== SOKOBAN.BOX_ON_GOAL )	boxongoal=1;	//如果有*
+        if(this.level[y].charAt(x)== SOKOBAN.GOAL ||
+          this.level[y].charAt(x)== SOKOBAN.MAN_ON_GOAL)	nogoal=0;	//如果有.
+      }
+    }
+
+    if(boxongoal && nogoal)
+	    alert('You Win');
+
   },
 };
 
