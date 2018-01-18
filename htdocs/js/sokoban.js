@@ -585,19 +585,34 @@ let sokoban = {
     this.paint();
 
     //檢查遊戲是否結束...
+    //箱子推到目標: 你贏了.
     var boxongoal=0;
     var nogoal=1;
 
     for(var y=0; y<this.level.length; y++){   //檢查每個字元
       for(var x=0; x<this.level.length; x++){
-        if(this.level[y].charAt(x)== SOKOBAN.BOX_ON_GOAL )	boxongoal=1;	//如果有*
+        if(this.level[y].charAt(x)== SOKOBAN.BOX_ON_GOAL)	boxongoal=1;	//如果有*
         if(this.level[y].charAt(x)== SOKOBAN.GOAL ||
           this.level[y].charAt(x)== SOKOBAN.MAN_ON_GOAL)	nogoal=0;	//如果有.
       }
     }
 
-    if(boxongoal && nogoal)
-	    alert('You Win');
+    if(boxongoal && nogoal) alert('You Win!');
+
+
+    //箱子推到死角: 你無法再推箱子了.
+    for(var y=0; y<this.level.length; y++){   //檢查每個字元
+      for(var x=0; x<this.level.length; x++){
+        if(this.level[y].charAt(x)== SOKOBAN.BOX) {
+          if((this.level[y-1].charAt(x)== SOKOBAN.WALL ||
+            this.level[y+1].charAt(x)== SOKOBAN.WALL)
+            &&
+            (this.level[y].charAt(x+1)== SOKOBAN.WALL||
+            this.level[y].charAt(x-1)== SOKOBAN.WALL))
+              alert('You can not push box anyway!!');
+        }
+      }
+    }
 
   },
 };
